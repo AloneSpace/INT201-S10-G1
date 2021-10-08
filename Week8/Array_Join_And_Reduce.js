@@ -36,7 +36,7 @@ let s10_have_fruit = [
     ,
 ]; //* กำนหดให้ s10_have_fruit เป็น Array Object ที่มัผลไม้
 
-
+//* เรียกใช้ Function sum_fruit()
 let sum_total_fruits = sum_fruit(s10_have_fruit);
 
 console.log(sum_total_fruits); //* Output: 10
