@@ -2,8 +2,10 @@ import stationeries from "../stationeries.js";
 
 const productsEle = document.querySelector("#products");
 const incartEle = document.querySelector("#incart");
+const carts = document.querySelector("#carts");
 
-incartEle.textContent = 0;
+let count = 0;
+incartEle.textContent = count;
 let incart = [];
 
 for (let stationery of stationeries) {
@@ -20,6 +22,12 @@ for (let stationery of stationeries) {
     divProductEle.appendChild(divProductDetail);
     productsEle.appendChild(divProductEle);
 
+    carts.addEventListener("click" , ()=>{
+        let a = [];
+        incart = a;
+        incartEle.textContent = count = 0;
+        console.log(incart);
+    })
 }
 
 function appendProductName(stationery) {
@@ -38,9 +46,11 @@ function appendProductDetail(stationery) {
     let addToCartBtn = document.createElement("button");
     addToCartBtn.setAttribute("id", stationery.name);
     addToCartBtn.addEventListener("click", ()=>{
-        if(incart.find)
-        incart.push(addToCartBtn.getAttribute('id'));
-        incartEle.textContent =  (incart.length > 0) ? incart.length : 0;
+        let addproduct = addToCartBtn.getAttribute('id')
+        if(checks(incart , addproduct)){
+            incartEle.textContent =  ++count;
+        };
+        incart.push(addproduct);
         console.log(incart);
     },false);
     addToCartBtn.className =
@@ -75,3 +85,10 @@ function appendImgProduct(stationery){
     divImgProduct.appendChild(ImgEle);
     return divImgProduct;
 }
+
+
+function checks(arr, val) {
+    return arr.some(function(arrVal) {
+      return val === arrVal;
+    });
+  }
