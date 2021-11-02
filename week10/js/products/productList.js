@@ -1,6 +1,10 @@
 import stationeries from "../stationeries.js";
 
 const productsEle = document.querySelector("#products");
+const incartEle = document.querySelector("#incart");
+
+incartEle.textContent = 0;
+let incart = [];
 
 for (let stationery of stationeries) {
     let divProductEle = document.createElement("div");
@@ -15,6 +19,7 @@ for (let stationery of stationeries) {
     divProductEle.appendChild(divImgProduct);
     divProductEle.appendChild(divProductDetail);
     productsEle.appendChild(divProductEle);
+
 }
 
 function appendProductName(stationery) {
@@ -32,6 +37,12 @@ function appendProductDetail(stationery) {
     let divPriceEle = appendDivPriceEle(stationery);
     let addToCartBtn = document.createElement("button");
     addToCartBtn.setAttribute("id", stationery.name);
+    addToCartBtn.addEventListener("click", ()=>{
+        if(incart.find)
+        incart.push(addToCartBtn.getAttribute('id'));
+        incartEle.textContent =  (incart.length > 0) ? incart.length : 0;
+        console.log(incart);
+    },false);
     addToCartBtn.className =
         "bg-green-500 text-xs text-white px-2 py-1 font-semibold rounded uppercase hover:bg-green-600";
     addToCartBtn.textContent = "เพิ่มลงในตะกร้า";
