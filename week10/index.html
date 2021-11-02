@@ -1,54 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>S10 Shop</title>
-    <script type="module" src="js\products\productList.js"></script>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
-</head>
-
-<body>
-    <div style="padding-top: 30px;" >
-        <div style="position: relative; float: right; padding-right: 80px; padding-top: 20px;">
-            <li
-                class="font-sans block mt-4 lg:inline-block lg:mt-0 lg:ml-6 align-middle text-black hover:text-gray-700">
-                <a href="#" role="button" class="relative flex" id="carts">
-                    <svg class="flex-1 w-8 h-8 fill-current" viewbox="0 0 24 24">
-                        <path
-                            d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" />
-                    </svg>
-                    <span id="incart"
-                        class="absolute right-0 top-0 rounded-full bg-red-600 w-4 h-4 top right p-0 m-0 text-white font-mono text-sm  leading-tight text-center">
-                    </span>
-                </a>
-            </li>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>S10 Shop</title>
+        <script type="module" src="js/products/productList.js"></script>
+        <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+    </head>
+    <body>
+        <div class="container flex justify-end items-end my-8 md:mx-auto">
+            <h1 id="cart" class="font-bold text-gray-500"></h1>
         </div>
-        <div style="position: relative; float: right; padding-top: 20px;">
-            <form action="">
-                <input
-                    class="shadow appearance-none border rounded py-2 px-12 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text" id="search" name="search" value="">
-                <button
-                    id="btn"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1.5 px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="button">
-                    Search
-                </button>
-            </form>
+        <div class="container flex justify-center items-center my-8 md:mx-auto">
+            <div
+                id="products"
+                class="grid grid-cols-1 md:grid-cols-3 md:gap-4"
+            ></div>
         </div>
-    </div>
-    <div class="container flex justify-end items-end my-8 md:mx-auto">
-        <h1 id="cart" class="font-bold text-gray-500"></h1>
-    </div>
-    <div class="container flex justify-center items-center my-8 md:mx-auto">
-        <div id="products" class="grid grid-cols-1 md:grid-cols-3 md:gap-4"></div>
-    </div>
-    <!-- <script type="module" src="js/events/addToCart.js"></script> -->
-    <!-- <script type="module" src="js\products\search.js"></script> -->
-</body>
-
+        <script type="module" src="js/events/addToCart.js"></script>
+    </body>
 </html>
