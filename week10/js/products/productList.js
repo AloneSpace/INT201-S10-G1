@@ -8,32 +8,65 @@ let count = 0;
 incartEle.textContent = count;
 let incart = [];
 
+let result = stationeries.filter(text => text.name.includes(""));
+
+let btn = document.getElementById("btn");
+
+btn.addEventListener("click" , ()=>{
+    buttonC();
+},false)
+
+//ปุ่ม search
+function buttonC(){
+    let x = document.getElementById("search").value.toLowerCase();
+    result = stationeries.filter(text => text.name.toLowerCase().includes(`${x}`));
+    console.log(result.length == 0);
+    let divProduct = productsEle.children;
+    if(result.length == 0){
+        for(let a of divProduct){
+            a.style.display = "none";
+        }
+    }else{
+        for(let a of divProduct){
+            for(let e of result){
+                if(a.id == e.id){
+                    a.style.display = "";
+                    break;
+                }else{
+                    a.style.display = "none";
+                }
+            }
+        }
+    }
+}
+//เลขตะกร้า
+carts.addEventListener("click" , ()=>{
+    let a = [];
+    incart = a;
+    incartEle.textContent = count = 0;
+    console.log(incart);
+})
+
 for (let stationery of stationeries) {
-    let divProductEle = document.createElement("div");
-    divProductEle.setAttribute("id", stationery.id);
-    divProductEle.className =
-        "w-56 md:w-72 bg-white mt-20 shadow-lg rounded-lg overflow-hidden";
-    let divProductName = appendProductName(stationery);
-    let divImgProduct = appendImgProduct(stationery);
-    let divProductDetail = appendProductDetail(stationery);
-
-    divProductEle.appendChild(divProductName);
-    divProductEle.appendChild(divImgProduct);
-    divProductEle.appendChild(divProductDetail);
-    productsEle.appendChild(divProductEle);
-
-    carts.addEventListener("click" , ()=>{
-        let a = [];
-        incart = a;
-        incartEle.textContent = count = 0;
-        console.log(incart);
-    })
+        let divProductEle = document.createElement("div");
+        divProductEle.setAttribute("id", stationery.id);
+        divProductEle.className =
+            "w-56 md:w-72 bg-white mt-20 shadow-lg rounded-lg overflow-hidden";
+        let divProductName = appendProductName(stationery);
+        let divImgProduct = appendImgProduct(stationery);
+        let divProductDetail = appendProductDetail(stationery);
+    
+        divProductEle.appendChild(divProductName);
+        divProductEle.appendChild(divImgProduct);
+        divProductEle.appendChild(divProductDetail);
+        productsEle.appendChild(divProductEle);
 }
 
 function appendProductName(stationery) {
     let divProductName = document.createElement("div");
     divProductName.className =
         "py-2 text-center font-bold uppercase tracking-wide text-gray-800";
+    divProductName.setAttribute("id" , "name");
     divProductName.textContent = stationery.name;
     return divProductName;
 }
@@ -47,9 +80,10 @@ function appendProductDetail(stationery) {
     addToCartBtn.setAttribute("id", stationery.name);
     addToCartBtn.addEventListener("click", ()=>{
         let addproduct = addToCartBtn.getAttribute('id')
-        if(checks(incart , addproduct)){
-            incartEle.textContent =  ++count;
-        };
+        // if(!checks(incart , addproduct)){
+        //     incartEle.textContent =  ++count;
+        // };
+        incartEle.textContent =  ++count;
         incart.push(addproduct);
         console.log(incart);
     },false);
@@ -92,3 +126,4 @@ function checks(arr, val) {
       return val === arrVal;
     });
   }
+
