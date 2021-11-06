@@ -35,9 +35,9 @@ function appendProductDetail(stationery) {
     addToCartBtn.setAttribute("id", stationery.name);
     addToCartBtn.addEventListener("click", ()=>{
         let addproduct = addToCartBtn.getAttribute('id')
-        // if(!checks(incart , addproduct)){
-        //     incartEle.textContent =  ++count;
-        // };   
+        if(!incart.includes(addproduct)){
+            alert(`${addproduct} added inn your cart`);
+        }
         incartEle.textContent =  ++count;
         incart.push(addproduct);
         console.log(incart);
