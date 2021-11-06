@@ -1,51 +1,6 @@
 import stationeries from "../stationeries.js";
 
 const productsEle = document.querySelector("#products");
-const incartEle = document.querySelector("#incart");
-const carts = document.querySelector("#carts");
-
-let count = 0;
-incartEle.textContent = count;
-let incart = [];
-
-let result = stationeries.filter(text => text.name.includes(""));
-
-let btn = document.getElementById("btn");
-
-btn.addEventListener("click" , ()=>{
-    buttonC();
-},false)
-
-//ปุ่ม search
-function buttonC(){
-    let x = document.getElementById("search").value.toLowerCase();
-    result = stationeries.filter(text => text.name.toLowerCase().includes(`${x}`));
-    console.log(result.length == 0);
-    let divProduct = productsEle.children;
-    if(result.length == 0){
-        for(let a of divProduct){
-            a.style.display = "none";
-        }
-    }else{
-        for(let a of divProduct){
-            for(let e of result){
-                if(a.id == e.id){
-                    a.style.display = "";
-                    break;
-                }else{
-                    a.style.display = "none";
-                }
-            }
-        }
-    }
-}
-//เลขตะกร้า
-carts.addEventListener("click" , ()=>{
-    let a = [];
-    incart = a;
-    incartEle.textContent = count = 0;
-    console.log(incart);
-})
 
 for (let stationery of stationeries) {
         let divProductEle = document.createElement("div");
@@ -82,7 +37,7 @@ function appendProductDetail(stationery) {
         let addproduct = addToCartBtn.getAttribute('id')
         // if(!checks(incart , addproduct)){
         //     incartEle.textContent =  ++count;
-        // };
+        // };   
         incartEle.textContent =  ++count;
         incart.push(addproduct);
         console.log(incart);
@@ -121,9 +76,62 @@ function appendImgProduct(stationery){
 }
 
 
-function checks(arr, val) {
-    return arr.some(function(arrVal) {
-      return val === arrVal;
-    });
-  }
+const incartEle = document.querySelector("#incart");
+const carts = document.querySelector("#carts");
 
+let count = 0;
+incartEle.textContent = count;
+let incart = [];
+
+let btn = document.getElementById("shownavbar");
+let cilcks = false; 
+let navbar = document.getElementById("searchbar");
+btn.addEventListener("click" , ()=>{
+    if(cilcks){
+        navbar.style.display = "none";
+        cilcks = false;
+    }else{
+        navbar.style.display = "";
+        cilcks = true;
+    }
+},false);
+
+let inp = document.getElementById("search");
+
+inp.addEventListener("keyup" , ()=>{
+    buttonC();
+},false)
+
+let result = stationeries.filter(text => text.name.includes(""));
+
+//ปุ่ม search
+function buttonC(){
+    let x = document.getElementById("search").value.toLowerCase();
+    result = stationeries.filter(text => text.name.toLowerCase().includes(`${x}`));
+    console.log(result.length == 0);
+    let divProduct = productsEle.children;
+    console.log(result);
+    if(result.length == 0){
+        for(let a of divProduct){
+            a.style.display = "none";
+        }
+    }else{
+        for(let a of divProduct){
+            for(let e of result){
+                if(a.id == e.id){
+                    a.style.display = "";
+                    break;
+                }else{
+                    a.style.display = "none";
+                }
+            }
+        }
+    }
+}
+//เลขตะกร้า
+carts.addEventListener("click" , ()=>{
+    let a = [];
+    incart = a;
+    incartEle.textContent = count = 0;
+    console.log(incart);
+})
