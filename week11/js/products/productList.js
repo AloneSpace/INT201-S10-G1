@@ -6,7 +6,7 @@ for (let stationery of stationeries) {
         let divProductEle = document.createElement("div");
         divProductEle.setAttribute("id", stationery.id);
         divProductEle.className =
-            "w-56 md:w-72 bg-white mt-20 shadow-lg rounded-lg overflow-hidden";
+            "w-56 md:w-72 bg-white mt-20 shadow-lg rounded-lg overflow-hidden ";
         let divProductName = appendProductName(stationery);
         let divImgProduct = appendImgProduct(stationery);
         let divProductDetail = appendProductDetail(stationery);
@@ -29,14 +29,14 @@ function appendProductName(stationery) {
 function appendProductDetail(stationery) {
     let divProductDetail = document.createElement("div");
     divProductDetail.className =
-        "flex items-center justify-between py-2 px-3 bg-gray-400";
+        "flex items-center justify-between py-2 px-3 bg-gray-400 ";
     let divPriceEle = appendDivPriceEle(stationery);
     let addToCartBtn = document.createElement("button");
     addToCartBtn.setAttribute("id", stationery.name);
     addToCartBtn.addEventListener("click", ()=>{
         let addproduct = addToCartBtn.getAttribute('id')
         if(!incart.includes(addproduct)){
-            alert(`${addproduct} added in your cart`);
+            alert(`${addproduct} added inn your cart`);
         }
         incartEle.textContent =  ++count;
         incart.push(addproduct);
@@ -77,7 +77,7 @@ function appendImgProduct(stationery){
 
 
 const incartEle = document.querySelector("#incart");
-const carts = document.querySelector("#carts");
+const quantity = document.querySelector("#quantity");
 
 let count = 0;
 incartEle.textContent = count;
@@ -129,7 +129,7 @@ function buttonC(){
     }
 }
 //เลขตะกร้า
-carts.addEventListener("click" , ()=>{
+quantity.addEventListener("click" , ()=>{
     let a = [];
     incart = a;
     incartEle.textContent = count = 0;
