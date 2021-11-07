@@ -6,3 +6,5 @@ export default [
     { id: 5, name: "Paint brush", stock: 25, price: 20, srcimg: "https://i.ibb.co/yFVB2V2/Pngtree-paint-brush-icon-cartoon-style-5166284.png" },
     { id: 6, name: "ruler", stock: 30, price: 12, srcimg: "https://i.ibb.co/h297NWz/Pngtree-ruler-4359175.png"},
 ];
+// เก็บ product ไว้ใน array
+// export ให้ไฟล์ productList.js
