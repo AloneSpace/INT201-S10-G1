@@ -93,7 +93,7 @@ const incartEle = document.querySelector("#incart");
 
 const deleteAllCartBtn = document.querySelector("#deleteAllBtn"); 
 //console.log(deleteAllCartBtn);
-deleteAllCartBtn.addEventListener("click", deleleteAllInCart );
+deleteAllCartBtn.addEventListener("click", deleteAllInCart );
 
 
 
@@ -166,7 +166,7 @@ function buttonC(){
 
 
 
-function deleleteAllInCart(){
+function deleteAllInCart(){
     alert(`Delete all products in your cart`);
     incart = [];
     incartEle.textContent = 0;  
