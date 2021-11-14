@@ -4,7 +4,7 @@ const incartEle = document.querySelector("#incart");
 let table = document.getElementById("cartTable");
 
 export const addToCart = async (product) => {
-    let productIndex = cart.findIndex((item) => item.id === product.id);
+    let productIndex = cart.findIndex((item) => item.id === product.id); // [{"id":1,"name":"Pencil","stock":30,"price":5,"srcimg":"https://i.ibb.co/DptRh0j/Pngtree-vector-pencil-icon-3773618.png","quantity":1}] cart[] 
     productIndex === -1
         ? cart.push({ ...product, quantity: 1 })
         : (cart[productIndex].quantity += 1);
@@ -33,6 +33,7 @@ export const initliaizeCart = () => {
             addProductToTable(cart[i], row, qty);
         }
     }
+    // incartEle.textContent = cart.length;
     incartEle.textContent = cart.length;
 };
 
@@ -106,3 +107,10 @@ function addProductToTable(product, row, qty = 1) {
         false
     );
 }
+
+document.getElementById("deleteAllBtn").addEventListener("click" , ()=>{
+    alert(`Delete all products in your cart`);
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    incartEle.textContent = 0;
+});

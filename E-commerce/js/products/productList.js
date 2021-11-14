@@ -1,5 +1,6 @@
 import stationeries from "../stationeries.js";
 import { initliaizeCart, addToCart } from "../cart/cart.js";
+import { CookieUtil } from "../events/cookie.js";
 
 // เลือก node id = products ในหน้า index.html
 const productsEle = document.querySelector("#products");
@@ -51,6 +52,19 @@ function appendProductDetail(stationery) {
         },
         false
     );
+    let addToCartBtn1 = document.createElement("button");
+    // ตั้งค่าให้ปุ่ม addToCartBtn แต่ละปุ่มมี id เป็นชื่อของสินค้า
+    addToCartBtn1.setAttribute("id", stationery.id);
+    addToCartBtn1.addEventListener(
+        "click",
+        () => {
+            _self(stationery);
+        },
+        false
+    );
+    addToCartBtn1.className =
+        "bg-green-500 text-xs text-white px-1 py-1 font-semibold rounded uppercase hover:bg-green-600";
+    addToCartBtn1.textContent = "s";
     // addToCartBtn.addEventListener(
     //     "click",
     //     () => {
@@ -103,79 +117,4 @@ function appendImgProduct(stationery) {
     ImgEle.style = "height:300px";
     divImgProduct.appendChild(ImgEle);
     return divImgProduct;
-}
-
-// Search ------------------------------------------------------------------------------------
-
-// ให้ btn เก็บค่าของของ element ที่มี id = shownavbar (ปุ่ม search)
-let btn = document.getElementById("shownavbar");
-let cilcks = false;
-let navbar = document.getElementById("searchbar");
-// ตั้งค่าให้แถบ search ปรากฏออกมาเมื่อเราคลิ๊กที่ปุ่ม search
-btn.addEventListener(
-    "click",
-    () => {
-        if (cilcks) {
-            navbar.style.display = "none";
-            cilcks = false;
-        } else {
-            navbar.style.display = "";
-            cilcks = true;
-        }
-    },
-    false
-);
-
-let inp = document.getElementById("search");
-// keyup ตรวจสอบว่ามีการกดหรือปล่อยปุ่มใด ๆ จากแป้นพิมพ์
-inp.addEventListener(
-    "keyup",
-    () => {
-        buttonC();
-    },
-    false
-);
-
-// result เก็บ Obj ใน array stationeries เลือกเฉพาะสินค้าที่ตรงกับคำที่เราค้นหา
-// includes จะเช็คว่า array นั้นมีค่าทีเราต้องการจะค้นหาอยู่หรือไม่ และจะ return เป็น true/false
-let result = stationeries.filter((text) => text.name.includes(""));
-
-//ปุ่ม search
-function buttonC() {
-    // x เป็นตัวแปรเก็บค่าที่รับมาจากแป้นพิมพ์ โดยจะเปลี่ยนให้อยู่ในรูปแบบของ ตัวอักษรพิมพ์เล็ก แล้วนำไปเช็คกับชื่อสินค้าใน stationeries
-    let x = document.getElementById("search").value.toLowerCase();
-    result = stationeries.filter((text) =>
-        text.name.toLowerCase().includes(`${x}`)
-    );
-    console.log(result.length == 0);
-    let divProduct = productsEle.children; // เก็บ productsEle.children หรือก็คือ divProductEle แต่ละตัวลงใน divProduct
-    console.log(result);
-
-    // ถ้า result ที่ได้รับมาไม่ตรงกับชื่อสินค้าใดเลย จะให้ซ่อนรายการสินค้า(divProduct)ทั้งหมด
-    if (result.length == 0) {
-        for (let a of divProduct) {
-            a.style.display = "none"; // คำสั่ง style.display = "none" ทำให้ซ่อนแบบไม่เกิดพื้นที่ว่าง
-        }
-    } else {
-        // ถ้า result ที่ได้รับมามีส่วนที่เหมือนกับชื่อสินค้า ก็จะแสดงสินค้าที่มีความน่าจะเป็นที่เรากำกลังค้นหาอยู่ออกมา
-        for (let a of divProduct) {
-            for (let e of result) {
-                // ถ้าใน result ตรงกับชื่อใน product ตัวไหนก็จะปล่อยให้รายการสินค้านั้นแสดงต่อไป โดยใช้ id ของสินค้านั้นเป็นตัวเทียบ
-                if (a.id == e.id) {
-                    a.style.display = "";
-                    break;
-                } else {
-                    // ถ้า result ที่ได้รับมาไม่ตรงกับชื่อสินค้าใดเลย จะให้ซ่อนรายการสินค้าทั้งหมด
-                    a.style.display = "none";
-                }
-            }
-        }
-    }
-}
-
-function deleteAllInCart() {
-    alert(`Delete all products in your cart`);
-    incart = [];
-    incartEle.textContent = 0;
-    console.log(incart);
 }
