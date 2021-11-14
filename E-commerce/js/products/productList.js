@@ -52,19 +52,20 @@ function appendProductDetail(stationery) {
         },
         false
     );
-    let addToCartBtn1 = document.createElement("button");
-    // ตั้งค่าให้ปุ่ม addToCartBtn แต่ละปุ่มมี id เป็นชื่อของสินค้า
-    addToCartBtn1.setAttribute("id", stationery.id);
-    addToCartBtn1.addEventListener(
+
+
+    let addToWant = document.createElement("button");
+    // ตั้งค่าให้ปุ่ม addToWant แต่ละปุ่มมี id เป็นชื่อของสินค้า
+    addToWant.setAttribute("id", stationery.id);
+    addToWant.addEventListener(
         "click",
         () => {
-            _self(stationery);
+            
+            CookieUtil.set('name', stationery.name);
         },
         false
     );
-    addToCartBtn1.className =
-        "bg-green-500 text-xs text-white px-1 py-1 font-semibold rounded uppercase hover:bg-green-600";
-    addToCartBtn1.textContent = "s";
+    
     // addToCartBtn.addEventListener(
     //     "click",
     //     () => {
@@ -85,11 +86,16 @@ function appendProductDetail(stationery) {
     //     false
     // );
     //--------------------------------------------------------------------------------------------------------------------------------
+    
     addToCartBtn.className =
         "bg-green-500 text-xs text-white px-2 py-1 font-semibold rounded uppercase hover:bg-green-600";
     addToCartBtn.textContent = "เพิ่มลงในตะกร้า";
     divProductDetail.appendChild(divPriceEle);
     divProductDetail.appendChild(addToCartBtn);
+    addToWant.className =
+        "bg-yellow-300 text-xs text-white px-1 py-1 font-semibold rounded uppercase hover:bg-yellow-400";
+    addToWant.textContent = "เพิ่มสิ่งที่อยากได้";
+    divProductDetail.appendChild(addToWant);
     return divProductDetail;
 }
 
