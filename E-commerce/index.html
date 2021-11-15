@@ -106,9 +106,22 @@
                     </li>
                     <button
                         id="deleteAllBtn"
-                        class="block text-md px-4 py-2 rounded text-red-700 ml-2 font-bold hover:text-white mt-4 hover:bg-red-700 lg:mt-0"
+                        class="block text-md px-4 py-1 rounded text-red-700 ml-3 font-bold hover:text-white mt-4 hover:bg-red-700 lg:mt-0"
                     >
-                        Delete
+                        <!-- <svg> เอาไว้สำหรับใส่รูป/icon (icon ถังขยะ)-->
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            class="h-7 w-7" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor">
+                            <path 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                stroke-width="2" 
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    <!-- Delete -->
                     </button>
                 </div>
             </div>
@@ -117,7 +130,9 @@
             <div
                 id="products"
                 class="grid grid-cols-1 md:grid-cols-3 md:gap-4"
-            ></div>
+            >
+
+        </div>
             <div></div>
         </div>
         <div
@@ -145,5 +160,6 @@
                 <tbody></tbody>
             </table>
         </div>
+        <script type="module" src="js/events/event.js"></script>
     </body>
 </html>

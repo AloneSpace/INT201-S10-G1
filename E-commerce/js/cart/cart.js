@@ -35,6 +35,7 @@ export const initliaizeCart = () => {
             addProductToTable(cart[i], row, qty);
         }
     }
+    // incartEle.textContent = cart.length;
     incartEle.textContent = cart.length;
 };
 
@@ -115,3 +116,10 @@ function addProductToTable(product, row, qty = 1) {
         false
     );
 }
+
+document.getElementById("deleteAllBtn").addEventListener("click", () => {
+    alert(`Delete all products in your cart`);
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    incartEle.textContent = 0;
+});
