@@ -23,15 +23,27 @@ export class CookieUtil {
     }
   
     static set(name, value, expires) {
-      let cookieText = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`;
-  
-      if (expires instanceof Date) {
-        cookieText += `; expires=${expires.toUTCString()}`;
-        // cookieText += `; expires=${expires}`;
-      }
-  
-      console.log(`cookieText = ${cookieText}`);
-      document.cookie = cookieText;
+      let cookieValues = document.cookie.split("favorites=")[1];
+      console.log(typeof cookieValues);
+      
+        let cookieText = "";
+        try {
+            let values = JSON.parse(cookieValues);
+            values.push(value);
+            cookieText = `${encodeURIComponent(name)}=${JSON.stringify(
+                encodeURIComponent(value)
+            )}`;
+        } catch (error) {
+            cookieText = `${encodeURIComponent(name)}=["${encodeURIComponent(
+                value
+            )}"]`;
+            console.log(error);
+        }
+        if (expires instanceof Date) {
+            cookieText += `; expires=${expires.toUTCString()}`;
+        }
+        document.cookie = cookieText;
+        console.log(`cookieText = ${cookieText}`);
     }
   
     static unset(name) {
