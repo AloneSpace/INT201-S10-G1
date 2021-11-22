@@ -22,7 +22,7 @@ export default function appendProductDetail(stationery) {
 
     let addToWant = document.createElement("button");
     // ตั้งค่าให้ปุ่ม addToWant แต่ละปุ่มมี id เป็นชื่อของสินค้า
-    addToWant.setAttribute("id", stationery.id);
+    addToWant.setAttribute("id", `favorite-${stationery.name}`);
     addToWant.addEventListener(
         "click",
         () => {
@@ -36,12 +36,23 @@ export default function appendProductDetail(stationery) {
     addToCartBtn.textContent = "เพิ่มลงในตะกร้า";
     divProductDetail.appendChild(divPriceEle);
     divProductDetail.appendChild(addToCartBtn);
-    addToWant.className =
-        "bg-pink-300 text-xs text-white px-1 py-1 font-semibold rounded uppercase hover:bg-yellow-400 mr-4";
+    // addToWant.className =
+    //     "text-xs font-semibold rounded mr-4 ";
     addToWant.innerHTML = 
-    `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+    `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
         <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
      </svg>`
+    let favorites = document.cookie.split("favorites=")[1];
+    try {
+        let values = JSON.parse(favorites);
+        if(!values.includes(stationery.name)){
+            throw Error()
+        }
+        addToWant.className = "text-xs font-semibold rounded mr-4 text-red-500";
+    } catch (error) {
+        addToWant.className = "text-xs font-semibold rounded mr-4 text-white";
+        console.log(error);
+    }
     divProductDetail.appendChild(addToWant);
     return divProductDetail;
 }

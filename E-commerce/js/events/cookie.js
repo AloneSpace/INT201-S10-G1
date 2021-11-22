@@ -27,13 +27,22 @@ export class CookieUtil {
       console.log(typeof cookieValues);
       
         let cookieText = "";
+        let addToWant = document.getElementById(`favorite-${value}`);
         try {
             let values = JSON.parse(cookieValues);
-            values.push(value);
-            cookieText = `${encodeURIComponent(name)}=${JSON.stringify(
-                encodeURIComponent(value)
-            )}`;
+            if(values.includes(value)){
+              addToWant.className = 'text-xs font-semibold rounded mr-4 text-white';
+              values.splice(values.indexOf(value),1);
+            }else{
+              addToWant.className = 'text-xs font-semibold rounded mr-4 text-red-500';
+              values.push(value);
+            }
+            values = Array.from(new Set(values));
+            cookieText = `${encodeURIComponent(name)}=${
+              JSON.stringify(values)
+          }`;
         } catch (error) {
+            addToWant.className = 'text-xs font-semibold rounded mr-4 text-red-500';
             cookieText = `${encodeURIComponent(name)}=["${encodeURIComponent(
                 value
             )}"]`;
